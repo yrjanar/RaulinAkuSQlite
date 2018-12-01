@@ -2,6 +2,7 @@ package com.example.rauliyrjana.raulinakusqlite;
 
 import android.app.ListActivity;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.preference.EditTextPreference;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
@@ -48,6 +51,7 @@ public class MainActivity extends ListActivity{
                         hankinta.getText().toString(),painos.getText().toString());
 
                 adapter.add(aku);
+                nro.setText("");name.setText("");hankinta.setText("");painos.setText("");// tyhjät kentät
                 break;
 
             case R.id.delete: //tuhoaa ensimmÃ¤isen listalta
@@ -58,21 +62,31 @@ public class MainActivity extends ListActivity{
                 }
                 break;
 
-            case R.id.delsome: // tuhoaa jonkin mÃ¤Ã¤ritellyn listalta, ei oo vielÃ¤ valmis
-                break;
+            case R.id.deleteActLine: //poistaa sellaisen rivin, jota on klikattu listalta ja tiedot menneet tietojen syöttökenttään
+                if (getListAdapter().getCount() > 0) {
+                    EditText no = findViewById(R.id.editTextNumero);// hakee poistettavan tekstin 'numerolaatikosta', on siis ensin klikattu listalta poistettavaa teosta
 
-            case R.id.sort: // sorttaa listan numeron mukaan, ei vielÃ¤ valmis
+                    Toast.makeText(this, no + "  valittu", Toast.LENGTH_LONG).show();
+                    aku = (Aku)getListAdapter().getItem(no.getId());// haetaan pos -arvoa vastaava aku
+                    dataSource.deleteRow(aku);// poistetaan se tietokannasta
+                    adapter.remove(aku);// ja adapterista
+                }
                 break;
-
         }
-        //adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
     }
-    //@Override
-    //protected void onListItemClick(ListView l, View v, int position, long id){
-    //    Aku aku=(Aku)getListAdapter().getItem(position);
-    //    nro.setText(""+aku.getKirjanNumero());
-    //    name.setText(aku.getKirjanNimi());
-    //}
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id){ //klikataan jotain riviä
+        Aku aku=(Aku)getListAdapter().getItem(position); // haetaan sen positio
+        Aku akuno = (Aku)getListAdapter().getItem((int) id);
+        Toast.makeText(this, aku + "  valittu", Toast.LENGTH_SHORT).show();
+        EditText nro = findViewById(R.id.editTextNumero); //
+        EditText name = findViewById(R.id.editTextNimi);
+
+        nro.setText(""+aku.getKirjanNumero());
+        name.setText(aku.getKirjanNimi());
+
+    }
     @Override
     protected void onResume() {
         dataSource.open();
