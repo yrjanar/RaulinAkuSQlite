@@ -10,46 +10,34 @@
         android:id="@+id/add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginStart="16dp"
         android:onClick="onClick"
         android:text="Add"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/deleteActLine"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="120dp"
-        android:onClick="onClick"
-        android:text="Del1st"
-        app:layout_constraintStart_toEndOf="@+id/delsome"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/sort"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="120dp"
-        android:onClick="onClick"
-        android:text="Sort"
-        app:layout_constraintStart_toEndOf="@+id/add"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <Button
-        android:id="@+id/delsome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="120dp"
         android:onClick="onClick"
         android:text="Delete"
-        app:layout_constraintStart_toEndOf="@+id/sort"
+        app:layout_constraintStart_toEndOf="@+id/deleteActLine"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/deleteActLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+
+        android:onClick="onClick"
+        android:text="Delete Act Line"
+        app:layout_constraintBaseline_toBaselineOf="@+id/delete"
+        app:layout_constraintStart_toEndOf="@+id/add" />
 
 
     <ListView
@@ -65,7 +53,7 @@
         android:hint="Kirjan numero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:inputType="number"
 
@@ -79,7 +67,7 @@
         android:hint="Kirjan nimi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:inputType="text"
 
@@ -92,13 +80,13 @@
         android:id="@+id/editTextPainos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="180dp"
+
         android:layout_marginTop="8dp"
         android:hint="Painos"
-
         android:inputType="number"
-        app:layout_constraintStart_toEndOf="@+id/editTextNimi"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumero"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextHankinta"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -106,12 +94,12 @@
         android:id="@+id/editTextHankinta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="180dp"
         android:layout_marginTop="16dp"
+
         android:hint="Ostopvm ppkkvv"
         android:inputType="date"
-
-        app:layout_constraintStart_toEndOf="@+id/editTextNumero"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 </android.support.constraint.ConstraintLayout>

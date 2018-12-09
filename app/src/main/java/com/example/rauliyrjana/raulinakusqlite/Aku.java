@@ -42,6 +42,6 @@ public class Aku {
 
     @Override
     public String toString() {
-        return kirjanNumero + ". " + kirjanNimi + ". " + hankinta + ". " + painos ;
+        return kirjanNumero + ". " + kirjanNimi + ": hankintapv " + hankinta + " " + painos + " .painos";
     }
 }

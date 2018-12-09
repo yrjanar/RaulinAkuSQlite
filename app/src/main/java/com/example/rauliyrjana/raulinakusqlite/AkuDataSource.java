@@ -57,6 +57,13 @@ public class AkuDataSource extends ListActivity{
                 + " = " + id, null);
     }
 
+    public void deleteRow(Aku aku) {
+        String no = aku.getKirjanNumero();
+        System.out.println("Aku deleted with no: " + no);
+        database.delete(OmaSQLiteHelper.TABLE_AKUT, OmaSQLiteHelper.COLUMN_NRO
+                + " = " + no, null);
+    }
+
     public List<Aku> getAllAku() {
         List<Aku> akut = new ArrayList<Aku>();
 
